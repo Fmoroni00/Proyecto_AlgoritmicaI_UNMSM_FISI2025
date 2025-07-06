@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú Semanal - Aquimenu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <body class="menu-page">
+    <div class="container">
+        <h1>Menú Semanal</h1>
+        {% for i in range(5) %}
+            <section class="menu-del-dia">
+                <h2>{{ dias[i] }}</h2>
+                <div class="menu-items">
+                    {% for item in menus_semanales[i] %}
+                        <div class="menu-item">
+                            <img src="/static/images/{{ item.image }}" alt="{{ item.name }}" class="menu-item-img">
+                            <div class="menu-item-content">
+                                <h3>{{ item.name }}</h3>
+                                <p class="description">{{ item.description }}</p>
+                                <p class="precio"><strong>Precio:</strong> S/{{ item.precio }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+        <div class="navigation">
+            <a href="/" class="btn-atras">← Volver al Inicio</a>
+        </div>
+    </div>
+</body>
+</html>

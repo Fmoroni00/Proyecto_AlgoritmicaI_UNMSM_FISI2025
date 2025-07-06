@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Acceso Administrador - AquiMenu</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body class="admin-page">
+  <div class="admin-container">
+    <h1>🔐 Acceso de Administrador</h1>
+    
+    <div class="admin-box" style="max-width: 400px; margin: 0 auto;">
+      <h2>Iniciar Sesión</h2>
+      
+      {% if error %}
+      <div class="error-message" style="margin-bottom: 1rem;">
+        {{ error }}
+      </div>
+      {% endif %}
+      
+      <form method="POST" style="text-align: left;">
+        <div class="form-group">
+          <label for="usuario">Usuario:</label>
+          <input type="text" id="usuario" name="usuario" required 
+                 placeholder="Ingresa tu usuario" 
+                 style="width: 100%; padding: 10px; border: 2px solid #f8d94d; border-radius: 5px;">
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="password" required 
+                 placeholder="Ingresa tu contraseña"
+                 style="width: 100%; padding: 10px; border: 2px solid #f8d94d; border-radius: 5px;">
+        </div>
+        
+        <button type="submit" class="admin-btn" 
+                style="width: 100%; background-color: #f8d94d; color: #000; 
+                       padding: 12px; border: none; border-radius: 5px; 
+                       font-weight: bold; cursor: pointer; margin-top: 1rem;">
+          Iniciar Sesión
+        </button>
+      </form>
+      
+      <div style="margin-top: 2rem; text-align: center;">
+        <a href="/" class="admin-link">← Volver al inicio</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

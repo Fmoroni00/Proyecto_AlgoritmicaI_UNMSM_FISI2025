@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas de Clientes - Aquimenu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="menu-page">
+    <div class="container">
+
+        <div class="page-header">
+            <h1>🌟 Reseñas de Nuestros Clientes</h1>
+            <p>Descubre lo que dicen nuestros clientes sobre Aquímenu</p>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="estadisticas-resenas">
+            <div class="estadistica-card">
+                <h3>{{ total_resenas }}</h3>
+                <p>Reseñas Totales</p>
+            </div>
+            <div class="estadistica-card">
+                <h3>{{ calificacion_promedio }}/5</h3>
+                <p>Calificación Promedio</p>
+            </div>
+            <div class="estadistica-card">
+                <h3>{{ porcentaje_satisfaccion }}%</h3>
+                <p>Clientes Satisfechos</p>
+            </div>
+        </div>
+
+        <!-- Lista de reseñas -->
+        {% if resenas %}
+        <div class="resenas-lista">
+            {% for resena in resenas %}
+            <div class="resena-card">
+                <div class="resena-header">
+                    <div class="resena-autor">
+                        <strong>{{ resena.nombre }}</strong>
+                        <div class="resena-calificacion">
+                            {% for i in range(resena.calificacion|int) %}⭐{% endfor %}
+                        </div>
+                    </div>
+                    <div class="resena-fecha">
+                        {{ resena.fecha_resena.split(' ')[0] }}
+                    </div>
+                </div>
+                <div class="resena-plato">
+                    <em>Plato: {{ resena.plato }}</em>
+                </div>
+                <div class="resena-comentario">
+                    <p>"{{ resena.comentario }}"</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="mensaje-container">
+            <h2>Aún no hay reseñas</h2>
+            <p>¡Sé el primero en compartir tu experiencia!</p>
+        </div>
+        {% endif %}
+
+        <div class="resenas-navigation">
+            <a href="/reservar" class="btn-seleccionar">Hacer una Reserva</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem;">
+            <a href="/" class="btn-atras">← Volver al Inicio</a>
+        </div>
+
+    </div>
+</body>
+</html>

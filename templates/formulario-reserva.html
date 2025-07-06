@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar - {{ plato_nombre }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="formulario-page">
+        <!-- Encabezado -->
+    <div class="formulario-header">
+        <h1>Completar Reserva</h1>
+        <p>Plato seleccionado: <strong>{{ plato_nombre }}</strong></p>
+    </div>
+
+
+        <!-- Mostrar error si existe -->
+        {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- Formulario de reserva -->
+        <div class="form-container">
+            <form method="POST" class="reserva-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="email" id="correo" name="correo" required placeholder="ejemplo@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Número de Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="999 999 999">
+                </div>
+                <div class="form-group">
+                    <label for="puerta">Lugar de Recogida:</label>
+                    <select id="puerta" name="puerta" required>
+                        <option value="">Escoge una opción</option>
+                        <option value="Puerta 3">Puerta 3</option>
+                        <option value="Puerta 7">Puerta 7</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="horario">Horario de Recogida:</label>
+                    <select id="horario" name="horario" required>
+                        <option value="">Escoge una opción</option>
+                        <option value="12:00 - 12:30 PM">12:00 - 12:30 PM</option>
+                        <option value="12:30 - 1:00 PM">12:30 - 1:00 PM</option>
+                        <option value="1:00 - 1:30 PM">1:00 - 1:30 PM</option>
+                        <option value="1:30 - 2:00 PM">1:30 - 2:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-confirmar">Confirmar Reserva</button>
+                    <a href="/" class="btn-cancelar">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

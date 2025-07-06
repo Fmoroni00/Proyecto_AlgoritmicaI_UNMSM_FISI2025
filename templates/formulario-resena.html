@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escribir Reseña - Aquimenu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="formulario-page">
+
+    <div class="formulario-header">
+        <h1>Escribir Reseña</h1>
+        <p>Cuéntanos tu experiencia con: <strong>{{ plato_nombre }}</strong></p>
+    </div>
+
+    {% if error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <div class="form-container">
+        <form method="POST" action="/guardar-resena" class="reserva-form">
+            <input type="hidden" name="nombre" value="{{ nombre }}">
+            <input type="hidden" name="correo" value="{{ correo }}">
+            <input type="hidden" name="plato" value="{{ plato_nombre }}">
+
+            <div class="form-group">
+                <label for="calificacion">Calificación (1-5 estrellas):</label>
+                <select id="calificacion" name="calificacion" required>
+                    <option value="">Selecciona una calificación</option>
+                    <option value="1">⭐ - Muy malo</option>
+                    <option value="2">⭐⭐ - Malo</option>
+                    <option value="3">⭐⭐⭐ - Regular</option>
+                    <option value="4">⭐⭐⭐⭐ - Bueno</option>
+                    <option value="5">⭐⭐⭐⭐⭐ - Excelente</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comentario">Tu comentario:</label>
+                <textarea id="comentario" name="comentario" required 
+                          placeholder="Comparte tu experiencia con este plato..."
+                          rows="4" style="width: 100%; padding: 12px 15px; border: 2px solid #f8d94d; border-radius: 10px; font-size: 1rem; resize: vertical; box-sizing: border-box;"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-confirmar">Enviar Reseña</button>
+                <a href="/" class="btn-cancelar">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="navigation">
+        <a href="/" class="btn-atras">← Volver al Inicio</a>
+    </div>
+
+</body>
+</html>

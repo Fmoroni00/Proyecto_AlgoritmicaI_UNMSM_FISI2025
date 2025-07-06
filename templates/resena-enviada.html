@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseña Enviada - Aquimenu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="confirmacion">
+    <div class="confirmacion-contenido">
+        <h2>✅ Reseña Enviada</h2>
+        <div class="confirmacion-detalle">
+            <p>¡Gracias <strong>{{ nombre }}</strong> por tu reseña!</p>
+            <p><strong>Tu calificación:</strong> 
+                {% for i in range(calificacion|int) %}⭐{% endfor %}
+            </p>
+            <p>Tu reseña está siendo revisada por nuestro equipo y será publicada pronto.</p>
+            <p>¡Esperamos verte de nuevo en Aquímenu!</p>
+        </div>
+        <a href="/" class="btn">Volver al Menú</a>
+        <a href="/resenas" class="btn" style="background-color: #4CAF50; margin-left: 10px;">Ver Reseñas</a>
+    </div>
+</body>
+</html>

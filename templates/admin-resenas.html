@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Reseñas - Aquimenu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="admin-page">
+    <div class="admin-container">
+        <h1>🌟 Administrar Reseñas</h1>
+
+        <!-- Filtros -->
+        <div class="filtros-container">
+            <form method="GET" class="filtros-form">
+                <select name="estado" onchange="this.form.submit()">
+                    <option value="todas" {% if filtro_estado == 'todas' %}selected{% endif %}>Todas las reseñas</option>
+                    <option value="pendiente" {% if filtro_estado == 'pendiente' %}selected{% endif %}>Pendientes</option>
+                    <option value="aprobada" {% if filtro_estado == 'aprobada' %}selected{% endif %}>Aprobadas</option>
+                    <option value="rechazada" {% if filtro_estado == 'rechazada' %}selected{% endif %}>Rechazadas</option>
+                    <option value="oculta" {% if filtro_estado == 'oculta' %}selected{% endif %}>Ocultas</option>
+                </select>
+
+                <select name="calificacion" onchange="this.form.submit()">
+                    <option value="todas" {% if filtro_calificacion == 'todas' %}selected{% endif %}>Todas las calificaciones</option>
+                    <option value="5" {% if filtro_calificacion == '5' %}selected{% endif %}>5 estrellas</option>
+                    <option value="4" {% if filtro_calificacion == '4' %}selected{% endif %}>4 estrellas</option>
+                    <option value="3" {% if filtro_calificacion == '3' %}selected{% endif %}>3 estrellas</option>
+                    <option value="2" {% if filtro_calificacion == '2' %}selected{% endif %}>2 estrellas</option>
+                    <option value="1" {% if filtro_calificacion == '1' %}selected{% endif %}>1 estrella</option>
+                </select>
+            </form>
+        </div>
+
+        <!-- Lista de reseñas para administrar -->
+        {% if resenas %}
+        <div class="admin-resenas-lista">
+            {% for resena in resenas %}
+            <div class="admin-resena-card {% if resena.estado == 'pendiente' %}pendiente{% elif resena.estado == 'aprobada' %}aprobada{% elif resena.estado == 'oculta' %}oculta{% else %}rechazada{% endif %}">
+                <div class="resena-info">
+                    <div class="resena-header">
+                        <strong>{{ resena.nombre }}</strong>
+                        <span class="resena-calificacion">
+                            {% for i in range(resena.calificacion|int) %}⭐{% endfor %}
+                        </span>
+                        <span class="resena-estado estado-{{ resena.estado }}">{{ resena.estado.upper() }}</span>
+                    </div>
+                    <div class="resena-detalles">
+                        <p><strong>Plato:</strong> {{ resena.plato }}</p>
+                        <p><strong>Fecha:</strong> {{ resena.fecha_resena }}</p>
+                        <p><strong>Correo:</strong> {{ resena.correo }}</p>
+                    </div>
+                    <div class="resena-comentario">
+                        <p>"{{ resena.comentario }}"</p>
+                    </div>
+                </div>
+
+                <div class="resena-acciones">
+                    {% if resena.estado == 'pendiente' %}
+                        <a href="/aprobar-resena/{{ resena.indice_real }}" 
+                           class="admin-btn aprobar"
+                           onclick="return confirm('¿Aprobar esta reseña?');">
+                            ✅ Aprobar
+                        </a>
+                        <a href="/rechazar-resena/{{ resena.indice_real }}" 
+                           class="admin-btn rechazar"
+                           onclick="return confirm('¿Rechazar esta reseña?');">
+                            ❌ Rechazar
+                        </a>
+                    {% endif %}
+
+                    {% if resena.estado == 'aprobada' %}
+                        <a href="/ocultar-resena/{{ resena.indice_real }}" 
+                           class="admin-btn ocultar"
+                           onclick="return confirm('¿Ocultar esta reseña de la vista pública?');">
+                            👁️ Ocultar
+                        </a>
+                    {% endif %}
+
+                    {% if resena.estado == 'oculta' %}
+                        <a href="/aprobar-resena/{{ resena.indice_real }}" 
+                           class="admin-btn aprobar"
+                           onclick="return confirm('¿Mostrar esta reseña nuevamente?');">
+                            👁️ Mostrar
+                        </a>
+                    {% endif %}
+
+                    <a href="/borrar-resena-individual/{{ resena.indice_real }}" 
+                       class="admin-btn borrar-individual"
+                       onclick="return confirm('¿Estás seguro de BORRAR permanentemente esta reseña?');">
+                        🗑️ Borrar
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="mensaje-container">
+            <h2>No hay reseñas para mostrar</h2>
+            <p>No se encontraron reseñas con los filtros seleccionados.</p>
+        </div>
+        {% endif %}
+
+        <div class="admin-actions">
+            <a href="/admin" class="admin-link">← Volver al Panel</a>
+            <a href="/borrar-resenas" class="admin-btn delete" 
+               onclick="return confirm('¿Estás seguro de borrar TODAS las reseñas?');"
+               style="margin-left: 1rem;">
+                🗑️ Borrar Todas las Reseñas
+            </a>
+        </div>
+    </div>
+</body>
+</html>

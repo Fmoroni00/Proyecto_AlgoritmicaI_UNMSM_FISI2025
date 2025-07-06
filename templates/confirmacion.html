@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reserva Confirmada</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body class="confirmacion">
+    <div class="confirmacion-contenido">
+        <h2>✅ Reserva Confirmada</h2>
+        <p><strong>Plato reservado:</strong> {{ plato_nombre }}</p>
+        <p><strong>Nombre:</strong> {{ nombre }}</p>
+        <p><strong>Correo:</strong> {{ correo }}</p>
+        <p><strong>Teléfono:</strong> {{ telefono }}</p>
+        <p><strong>Fecha y hora de reserva:</strong> {{ fecha_hora }}</p>
+        <p><strong>Puerta de recogida:</strong> {{ puerta }}</p>
+        <p><strong>Horario de recogida:</strong> {{ horario }}</p>
+        <a href="/" class="btn">Volver al Menú</a>
+        <a href="/escribir-resena/{{ nombre }}/{{ correo }}/{{ plato }}" class="btn" style="background-color: #4CAF50; margin-left: 10px;">✍️ Escribir Reseña</a>
+    </div>
+</body>
+</html>

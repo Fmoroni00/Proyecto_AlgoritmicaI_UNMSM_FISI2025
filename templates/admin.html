@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel de Administración</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body class="admin-page">
+  <div class="admin-container">
+    <h1>Panel de Administración</h1>
+    <div class="admin-sections">
+      
+      <!-- Sección Descargar -->
+      <div class="admin-box">
+        <h2>📥 Descargar Reservas</h2>
+        <p>Obtén el archivo CSV con todas las reservas registradas.</p>
+        <a href="/exportar-reservas" class="admin-btn download">Descargar CSV</a>
+      </div>
+      
+      <!-- Sección Borrar -->
+      <div class="admin-box">
+        <h2>🗑️ Borrar Reservas</h2>
+        <p>Elimina todas las reservas guardadas (archivo CSV).</p>
+        <a href="/borrar-reservas" class="admin-btn delete" 
+           onclick="return confirm('¿Estás seguro de borrar todas las reservas?');">
+          Borrar ahora
+        </a>
+      </div>
+
+
+      <!-- Sección Reseñas -->
+      <div class="admin-box">
+        <h2>🌟 Gestionar Reseñas</h2>
+        <p>Administra las reseñas de los clientes: aprobar, rechazar o eliminar.</p>
+        <a href="/admin-resenas" class="admin-btn" style="background-color: #FF9800; color: white;">Administrar Reseñas</a>
+        <br><br>
+        <a href="/exportar-resenas" class="admin-btn download">📥 Descargar CSV Reseñas</a>
+      </div>
+    </div>
+    <a href="/" class="admin-link">← Volver al inicio</a>
+  </div>
+</body>
+</html>
